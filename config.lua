@@ -1,32 +1,10 @@
-application =
+application = 
 {
-
 	content =
 	{
 		width = 768,
-		height = 1024, 
-		scale = "letterBox",
+		height = 1024,
+		scale = "letterbox",
 		fps = 30,
-		
-		--[[
-		imageSuffix =
-		{
-			    ["@2x"] = 2,
-		},
-		--]]
 	},
-
-	--[[
-	-- Push notifications
-	notification =
-	{
-		iphone =
-		{
-			types =
-			{
-				"badge", "sound", "alert", "newsstand"
-			}
-		}
-	},
-	--]]    
 }
