@@ -15,7 +15,7 @@
 
 -- Calling Composer library to our game
 
-	local composer = require "composer"
+	local composer = require ( "composer" )
 
 -- Load start screen (it sends application to file 'start.lua'), existing scene is hidden
 
