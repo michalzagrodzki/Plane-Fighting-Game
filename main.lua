@@ -13,10 +13,10 @@
 
 	math.randomseed( os.time( ) )
 
--- Calling Storyboard library to our game
+-- Calling Composer library to our game
 
-	local storyboard = require "storyboard"
+	local composer = require "composer"
 
--- Load start screen (it sends application to file 'start.lua')
+-- Load start screen (it sends application to file 'start.lua'), existing scene is hidden
 
-	storyboard.gotoScene( "start" )
+	composer.gotoScene( "start" )
