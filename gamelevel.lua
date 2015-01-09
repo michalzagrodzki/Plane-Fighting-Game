@@ -89,7 +89,8 @@
 
         -- group object for entire view of this scene
         local sceneGroup = self.view
-        setupBackground()
+        setupBackground( )
+        setupGroups( )
     end
 
 -- Setting background
@@ -98,6 +99,13 @@
         local background = display.newRect( 0, 0, display.contentWidth, display.contentHeight )
         background:setFillColor( 0, 0, 1 )
         scene.view:insert( background )
+    end
+
+-- Setting groups for planes and islands
+
+    function setupGroups( )
+        islandGroup = display.newGroup( )
+        planeGroup  = display.newGroup( )
     end
 
 -- Adding Listeners to scene
