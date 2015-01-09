@@ -35,7 +35,7 @@
 	end
 
 -- Function which sends to 'gamelevel'
-	
+
 	function startGame( )
 		composer.gotoScene( 'gamelevel' )
 	end
