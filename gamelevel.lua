@@ -221,6 +221,11 @@
         local sceneGroup = self.view
     end
 
+-- Remove 'game scene'
+
+    local previousScene = getSceneName( "previous" )
+    composer.removeScene( previousScene )
+
 -- Adding Listeners to scene
 
     scene:addEventListener( "create", scene )
