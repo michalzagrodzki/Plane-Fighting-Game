@@ -95,6 +95,7 @@
         setupPlayer( )
         setupLiveImages( )
         setupDPad( )
+        resetPlaneGrid ( )
     end
 
 -- Setting background
@@ -203,6 +204,18 @@
         scene.view:insert(rectRight)
 
     end
+
+-- Setting empty grid for showing enemies
+
+    function resetPlaneGrid( )
+        planeGrid = { }
+            -- reset all fields in planeGrid
+            for i = 1, 11 do
+                table.insert( planeGrid, 0 )
+            end
+    end
+
+
 -- Adding Listeners to scene
 
     scene:addEventListener( "create", scene )
