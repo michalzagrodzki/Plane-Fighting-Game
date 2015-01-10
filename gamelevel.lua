@@ -132,7 +132,25 @@
     function setupPlayer ( )
         player = display.newImage( "player.png", (display.contentWidth / 2) - (playerWidth / 2), (display.contentHeight - 70) - playerHeight )
         player.name = "Player"
-        scene.view:insert(player)
+        scene.view:insert( player )
+    end
+
+-- Adding images of lives in scene
+
+    function setupLiveImages( )
+        for i = 1, 6 do
+            local tempLifeImage = display.newImage( "life.png", 40 * i - 20, 10 )
+
+            -- insert 'life image' into table
+            table.insert( livesImages, tempLifeImage)
+            scene.view:insert( tempLifeImage )
+
+            -- hide life images when it is bigger than 3
+            if (i > 3) then
+                tempLifeImage.isVisible = false
+            end
+
+        end
     end
 
 -- Adding Listeners to scene
