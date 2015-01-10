@@ -98,6 +98,10 @@
         resetPlaneGrid ( )
     end
 
+-- Function starts scene:create when scene's view does not exist
+
+    scene:addEventListener( "create", scene )
+
 -- Enter 'game scene'
 
     function scene:enter ( event )
@@ -109,9 +113,10 @@
 
         -- function that keeps triggering gameLoop
         Runtime:addEventListener( "enterFrame", gameLoop )
-
-
     end
+
+-- Function adds event listeners when player enters scene
+    scene:addEventListener( "enter", scene )
 
 -- Remove 'game scene'
 
@@ -306,8 +311,8 @@
 
 -- Adding Listeners to scene
 
-    scene:addEventListener( "create", scene )
-    scene:addEventListener( "enter", scene )
+
+
 
     -- Listeners for DPad
         rectUp:addEventListener( "touch", movePlane )
