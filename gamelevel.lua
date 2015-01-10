@@ -93,6 +93,8 @@
         setupGroups( )
         setupDisplay( )
         setupPlayer( )
+        setupLiveImages( )
+        setupDPad( )
     end
 
 -- Setting background
@@ -145,14 +147,62 @@
             table.insert( livesImages, tempLifeImage)
             scene.view:insert( tempLifeImage )
 
-            -- hide life images when it is bigger than 3
-            if (i > 3) then
-                tempLifeImage.isVisible = false
-            end
-
+                -- hide life images when it is bigger than 3
+                if (i > 3) then
+                    tempLifeImage.isVisible = false
+                end
         end
     end
 
+-- Setup input controls for player (DPAD)
+    -- rectangles will be invisible, but will be functional by property 'isHitTestable'
+    function setupDPad( )
+
+        -- direction UP
+        -- setting color
+        rectUp = display.newRect( 34, display.contentHeight - 70, 23, 23 )
+        rectUp:setFillColor( 1, 0, 0 )
+        rectUp.id = "up"
+        -- setting visibility
+        rectUp.isVisible = false
+        rectUp.isHitTestable = true
+        -- adding to view
+        scene.view:insert(rectUp)
+
+        -- direction DOWN
+        -- setting color
+        rectDown = display.newRect( 34, display.contentHeight - 23, 23, 23 )
+        rectDown:setFillColor( 1, 0, 0 )
+        rectDown.id = "down"
+        -- setting visibility
+        rectDown.isVisible = false
+        rectDown.isHitTestable = true
+        -- adding to view
+        scene.view:insert(rectDown)
+
+        -- direction LEFT
+        -- setting color
+        rectLeft = display.newRect( 10, display.contentHeight - 47, 23, 23 )
+        rectLeft:setFillColor( 1, 0, 0 )
+        rectLeft.id = "left"
+        -- setting visibility
+        rectLeft.isVisible = false
+        rectLeft.isHitTestable = true
+        -- adding to view
+        scene.view:insert(rectLeft)
+
+        -- direction RIGHT
+        -- setting color
+        rectRight = display.newRect( 58, display.contentHeight - 47, 23, 23 )
+        rectRight:setFillColor( 1, 0, 0 )
+        rectRight.id = "right"
+        -- setting visibility
+        rectRight.isVisible = false
+        rectRight.isHitTestable = true
+        -- adding to view
+        scene.view:insert(rectRight)
+
+    end
 -- Adding Listeners to scene
 
     scene:addEventListener( "create", scene )
