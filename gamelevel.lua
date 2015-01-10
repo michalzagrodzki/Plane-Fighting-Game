@@ -269,6 +269,37 @@
         end
     end
 
+-- Movement of Plane on scene, on every frame of game this function is triggered
+-- when movePlayer is triggered each time position of player.x and player.y is updated
+
+    function movePLayer ( )
+        -- position of player on screen
+        player.x = player.x + playerSpeedX
+        player.y = player.y + playerSpeedY
+
+        -- boundary conditions
+
+            -- state when X is smaller then 0
+            if (player.x < 0) then
+                player.x = 0
+            end
+
+            -- state when X is out of screen
+            if (player.x > display.contentWidth - playerWidth) then
+                player.x = display.contentWidth - playerWidth
+            end
+
+            -- state when Y is smaller then 0
+            if (player.y < 0) then
+                player.y = 0
+            end
+
+            -- state when Y is out of screen
+            if (player.y > display.contentHeight - 70 - playerHeight) then
+                player.y = display.contentHeight - 70 - playerHeight
+            end
+    end
+
 
 -- Adding Listeners to scene
 
