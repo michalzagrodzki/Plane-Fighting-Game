@@ -91,11 +91,12 @@
         local sceneGroup = self.view
         setupBackground( )
         setupGroups( )
+        setupDisplay( )
     end
 
 -- Setting background
 
-    function setupBackground(  )
+    function setupBackground( )
         local background = display.newRect( 0, 0, display.contentWidth, display.contentHeight )
         background:setFillColor( 0, 0, 1 )
         scene.view:insert( background )
@@ -108,6 +109,23 @@
         planeGroup  = display.newGroup( )
     end
 
+-- Adding controls to scene
+
+    function setupDisplay ( )
+        -- black backgound: setup, give color, add to scene view
+        local tempRect = display.newRect( 0, display.contentHeight - 70, display.contentWidth, 124 )
+        tempRect:setFillColor( 0, 0, 0 )
+        scene.view:insert( tempRect )
+
+        -- plane image: setup, give color, add to scene view
+        local logo = display.newImage( "logo.png", display.contentWidth - 139, display.contentHeight - 70 )
+        scene.view:insert( logo )
+
+        -- dpad image: setup, give color, add to scene view
+        local dpad = display.newImage( "dpad.png", 10, display.contentHeight - 70 )
+        scene.view:insert( dpad )
+
+    end
 -- Adding Listeners to scene
 
     scene:addEventListener( "create", scene )
