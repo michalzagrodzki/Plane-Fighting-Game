@@ -102,6 +102,11 @@
 
     function scene:enter ( event )
         local sceneGroup = self.view
+
+        -- loading sound of plane
+        local planeSound = audio.loadStream( "planesound.mp3" )
+        planeSoundChannel = audio.play( planeSound, {loops = -1} )
+
     end
 
 -- Remove 'game scene'
