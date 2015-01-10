@@ -280,7 +280,7 @@
     end
 
 -- Movement of Plane on scene, on every frame of game this function is triggered
--- when movePlayer is triggered each time position of player.x and player.y is updated
+    -- when movePlayer is triggered each time position of player.x and player.y is updated
 
     function movePLayer ( )
         -- position of player on screen
@@ -315,14 +315,6 @@
             numberOfTicks = numberOfTicks + 1
             movePLayer()
         end
-
-
--- Adding Listeners to scene
-
-
-
-
-
 
 -- Element return - required for module
 
