@@ -107,6 +107,16 @@
     function scene:enter ( event )
         local sceneGroup = self.view
 
+        -- removes previous instance of scene
+        local previousScene = getSceneName( "previous" )
+        composer.removeScene( previousScene )
+
+        -- Listeners for DPad - only available when entered scene
+        rectUp:addEventListener( "touch", movePlane )
+        rectDown:addEventListener( "touch", movePlane )
+        rectLeft:addEventListener( "touch", movePlane )
+        rectRight:addEventListener( "touch", movePlane )
+
         -- loading sound of plane
         local planeSound = audio.loadStream( "planesound.mp3" )
         planeSoundChannel = audio.play( planeSound, {loops = -1} )
@@ -117,11 +127,6 @@
 
 -- Function adds event listeners when player enters scene
     scene:addEventListener( "enter", scene )
-
--- Remove 'game scene'
-
-    local previousScene = getSceneName( "previous" )
-    composer.removeScene( previousScene )
 
 -- Setting background
 
@@ -138,7 +143,7 @@
         planeGroup  = display.newGroup( )
     end
 
--- Adding controls to scene
+-- Adding display controls  to scene
 
     function setupDisplay ( )
         -- black backgound: setup, give color, add to scene view
@@ -163,7 +168,7 @@
         scene.view:insert( player )
     end
 
--- Adding images of lives in scene
+-- Adding images of lifes in scene
 
     function setupLiveImages( )
         for i = 1, 6 do
@@ -314,11 +319,7 @@
 
 
 
-    -- Listeners for DPad
-        rectUp:addEventListener( "touch", movePlane )
-        rectDown:addEventListener( "touch", movePlane )
-        rectLeft:addEventListener( "touch", movePlane )
-        rectRight:addEventListener( "touch", movePlane )
+
 
 -- Element return - required for module
 
