@@ -141,6 +141,9 @@
     function setupGroups( )
         islandGroup = display.newGroup( )
         planeGroup  = display.newGroup( )
+        -- adding to view group
+        scene.view:insert( islandGroup )
+        scene.view:insert( planeGroup )
     end
 
 -- Adding display controls  to scene
