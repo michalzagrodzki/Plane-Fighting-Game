@@ -98,6 +98,17 @@
         resetPlaneGrid ( )
     end
 
+-- Enter 'game scene'
+
+    function scene:enter ( event )
+        local sceneGroup = self.view
+    end
+
+-- Remove 'game scene'
+
+    local previousScene = getSceneName( "previous" )
+    composer.removeScene( previousScene )
+
 -- Setting background
 
     function setupBackground( )
@@ -215,21 +226,48 @@
             end
     end
 
--- Enter 'game scene'
+-- Movement of Plane on scene
 
-    function scene:enter ( event )
-        local sceneGroup = self.view
+    -- when player touches the DPad ('began') - planes moves in desierd location, when player stops pressing button ('ended') - planes stops moving
+    function movePlane ( event )
+        if event.phase == "began" then
+            -- moving up
+            if (event.target.id == "up") then
+                playerSpeedY = -playerMoveSpeed
+            end
+
+            -- moving down
+            if (event.target.id == "down") then
+                playerSpeedY = playerMoveSpeed
+            end
+
+            -- moving left
+            if (event.target.id == "left") then
+                playerSpeedY = -playerMoveSpeed
+            end
+
+            -- moving right
+            if (event.target.id == "right") then
+                playerSpeedY = playerMoveSpeed
+            end
+
+        elseif event.phase == "ended" then
+            playerSpeedX = 0
+            playerSpeedY = 0
+        end
     end
 
--- Remove 'game scene'
-
-    local previousScene = getSceneName( "previous" )
-    composer.removeScene( previousScene )
 
 -- Adding Listeners to scene
 
     scene:addEventListener( "create", scene )
     scene:addEventListener( "enter", scene )
+
+    -- Listeners for DPad
+        rectUp:addEventListener( "touch", movePlane )
+        rectDown:addEventListener( "touch", movePlane )
+        rectLeft:addEventListener( "touch", movePlane )
+        rectRight:addEventListener( "touch", movePlane )
 
 -- Element return - required for module
 
