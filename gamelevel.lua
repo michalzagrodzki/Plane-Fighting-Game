@@ -107,6 +107,13 @@
         local planeSound = audio.loadStream( "planesound.mp3" )
         planeSoundChannel = audio.play( planeSound, {loops = -1} )
 
+        -- function that keeps triggering gameLoop
+        Runtime:addEventListener( "enterFrame", gameLoop )
+
+        -- function, that updates position of every sprite element on each frame
+        function gameLoop ( )
+            movePLayer()
+        end
     end
 
 -- Remove 'game scene'
