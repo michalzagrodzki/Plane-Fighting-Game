@@ -110,10 +110,7 @@
         -- function that keeps triggering gameLoop
         Runtime:addEventListener( "enterFrame", gameLoop )
 
-        -- function, that updates position of every sprite element on each frame
-        function gameLoop ( )
-            movePLayer()
-        end
+
     end
 
 -- Remove 'game scene'
@@ -299,6 +296,12 @@
                 player.y = display.contentHeight - 70 - playerHeight
             end
     end
+
+-- function, that updates position of every sprite element on each frame
+        function gameLoop ( )
+            numberOfTicks = numberOfTicks + 1
+            movePLayer()
+        end
 
 
 -- Adding Listeners to scene
