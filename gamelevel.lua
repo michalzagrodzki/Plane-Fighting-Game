@@ -215,10 +215,16 @@
             end
     end
 
+-- Enter 'game scene'
+
+    function scene:enter ( event )
+        local sceneGroup = self.view
+    end
 
 -- Adding Listeners to scene
 
     scene:addEventListener( "create", scene )
+    scene:addEventListener( "enter", scene )
 
 -- Element return - required for module
 
