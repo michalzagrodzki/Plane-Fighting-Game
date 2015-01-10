@@ -92,6 +92,7 @@
         setupBackground( )
         setupGroups( )
         setupDisplay( )
+        setupPlayer( )
     end
 
 -- Setting background
@@ -124,8 +125,16 @@
         -- dpad image: setup, give color, add to scene view
         local dpad = display.newImage( "dpad.png", 10, display.contentHeight - 70 )
         scene.view:insert( dpad )
-
     end
+
+-- Adding player image to scene
+
+    function setupPlayer ( )
+        player = display.newImage( "player.png", (display.contentWidth / 2) - (playerWidth / 2), (display.contentHeight - 70) - playerHeight )
+        player.name = "Player"
+        scene.view:insert(player)
+    end
+
 -- Adding Listeners to scene
 
     scene:addEventListener( "create", scene )
