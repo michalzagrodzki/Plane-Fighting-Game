@@ -316,7 +316,8 @@
 -- function, that updates position of every sprite element on each frame
         function gameLoop ( )
             numberOfTicks = numberOfTicks + 1
-            movePLayer()
+            movePLayer( )
+            movePlayerBullets( )
         end
 
 -- start timers
@@ -341,6 +342,21 @@
         if ( #playerBullets > 0 ) then
             for i = 1, #playerBullets do
                 playerBullets[ i ].y = playerBullets[ i ].y - 7
+            end
+        end
+    end
+
+-- remove bullets out of screen
+
+    -- table is looped in reversed order
+    function checkPlayerBulletsOutOfBounds( )
+        if (#playerBullets > 0) then
+            for i = #playerBullets, 1, -1 do
+                if (playerBullets[i].y - 18) then
+                    playerBullets[i]:removeSelf( )
+                    playerBullets[i] = nil
+                    table.remove( playerBullets, i )
+                end
             end
         end
     end
