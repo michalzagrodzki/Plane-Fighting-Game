@@ -121,6 +121,9 @@
         local planeSound = audio.loadStream( "planesound.mp3" )
         planeSoundChannel = audio.play( planeSound, {loops = -1} )
 
+        -- start timers
+        startTimers( )
+
         -- function that keeps triggering gameLoop
         Runtime:addEventListener( "enterFrame", gameLoop )
     end
@@ -316,6 +319,11 @@
             movePLayer()
         end
 
+-- start timers
+
+    function startTimers( )
+
+    end
 -- Element return - required for module
 
 	return scene
