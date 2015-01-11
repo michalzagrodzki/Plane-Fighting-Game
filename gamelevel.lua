@@ -324,6 +324,16 @@
     function startTimers( )
 
     end
+
+-- create bullet fired by player
+
+    function firePlayerBullet ( )
+        local tempBullet = display.newImage( "bullet.png" (player.x + playerWidth / 2) - bulletWidth, player.y - bulletHeight )
+        -- insert for later reference in table playerBullets
+        table.insert( playerBullets, tempBullet )
+        planeGroup:insert(tempBullet)
+    end
+
 -- Element return - required for module
 
 	return scene
