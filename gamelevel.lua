@@ -335,6 +335,16 @@
         planeGroup:insert(tempBullet)
     end
 
+-- move bullet fired by player
+
+    function movePlayerBullets( )
+        if ( #playerBullets > 0 ) then
+            for i = 1, #playerBullets do
+                playerBullets[ i ].y = playerBullets[ i ].y - 7
+            end
+        end
+    end
+
 -- Element return - required for module
 
 	return scene
