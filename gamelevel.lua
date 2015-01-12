@@ -318,6 +318,7 @@
             numberOfTicks = numberOfTicks + 1
             movePLayer( )
             movePlayerBullets( )
+            moveFreeLifes( )
         end
 
 -- start timers
@@ -410,6 +411,17 @@
         table.insert( freeLifes, freeLife )
         planeGroup:insert( freeLife )
     end
+
+-- movement of lifes
+
+    function moveFreeLifes ( )
+        if (#freeLifes > 0) then
+            for i = 1, #freeLifes do
+                freeLifes[ i ].y = freeLifes[ i ].y + 5
+            end
+        end
+    end
+
 
 -- Element return - required for module
 
