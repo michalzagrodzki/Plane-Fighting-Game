@@ -362,12 +362,22 @@
         end
     end
 
--- generating islands - decorator elements of gameplay
+-- generate islands - decorator elements of gameplay
 
     function generateIsland( )
         local tempIsland = display.newImage( "island.png", (math.random(0, display.contentWidth - islandWidth)), (-islandHeight) )
         -- insert for later reference in table playerBullets
         table.insert( islands, tempIsland )
+    end
+
+-- move islands
+
+    function moveIslands ( )
+        if (#islands > 0) then
+            for i = 1, #islands do
+                islands[ i ].y = islands[ i ].y + 3
+            end
+        end
     end
 
 -- Element return - required for module
