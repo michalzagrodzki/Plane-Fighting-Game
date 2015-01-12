@@ -422,6 +422,20 @@
         end
     end
 
+-- remove lifes out of screen
+
+    function checkFreeLifesOutOfBounds ( )
+        if ( #freeLifes > 0 ) then
+            -- reverse loop through table
+            for i = #freeLifes, 1, -1 do
+                if (freeLifes[ i ].y > display.contentHeight) then
+                    freeLifes[ i ]:removeSelf( )
+                    freeLifes[ i ] = nil
+                    table.remove( freeLifes, i )
+                end
+            end
+        end
+    end
 
 -- Element return - required for module
 
