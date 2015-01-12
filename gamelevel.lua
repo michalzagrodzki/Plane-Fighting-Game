@@ -479,6 +479,21 @@
         end
     end
 
+-- hides all lifes between 1 and 6 in table
+
+    function hideLives( )
+        for i = 1, 6 do
+            livesImages[ i ].isVisible = false
+        end
+    end
+
+-- shows all lifes between 1 and numberOfLives in table
+
+    function showLives( )
+        for i = 1, numberOfLives do
+            livesImages[ i ].isVisible = true
+        end
+    end
 
 -- Element return - required for module
 
