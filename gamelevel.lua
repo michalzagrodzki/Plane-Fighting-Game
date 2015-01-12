@@ -320,6 +320,7 @@
             movePlayerBullets( )
             moveFreeLifes( )
             checkFreeLifesOutOfBounds( )
+            checkPlayerCollidesWithFreeLife( )
         end
 
 -- start timers
@@ -455,9 +456,28 @@
         local down      = object1.contentBounds.yMin >= object2.contentBounds.yMin and object1.contentBounds.yMin <= object2.contentBounds.yMax
 
         return (left or right) and (up or down)
-
     end
 
+-- collision of player and freeLife
+
+    function checkPlayerCollidesWithFreeLife( )
+        if (#freeLifes > 0) then
+            -- reverse loop through table
+            for i = #freeLifes, 1, -1 do
+                -- when there is collision between player and free life
+                if (hasCollided (freeLifes[i], player )) then
+                    -- remove life from table
+                    freeLifes[i]:removeSelf( )
+                    freeLifes[i] = nil
+                    table.remove( freeLifes, i )
+                    -- add extra life to player
+                    numberOfLives = numberOfLives + 1
+                    hideLives()
+                    showLives()
+                end
+            end
+        end
+    end
 
 
 -- Element return - required for module
