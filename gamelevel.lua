@@ -325,6 +325,7 @@
     -- firing bullets (firePlayerBullet) all the time
     function startTimers( )
         firePlayerBulletTimer = timer.performWithDelay( 2000, firePlayerBullet, -1 )
+        generateIslandTimer = timer.performWithDelay( 5000, generateIsland, -1 )
     end
 
 -- create bullet fired by player
