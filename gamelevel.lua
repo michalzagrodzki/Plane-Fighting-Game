@@ -361,6 +361,14 @@
         end
     end
 
+-- generating islands - decorator elements of gameplay
+
+    function generateIsland( )
+        local tempIsland = display.newImage( "island.png", (math.random(0, display.contentWidth - islandWidth)), (-islandHeight) )
+        -- insert for later reference in table playerBullets
+        table.insert( islands, tempIsland )
+    end
+
 -- Element return - required for module
 
 	return scene
