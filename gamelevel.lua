@@ -351,7 +351,7 @@
 
     -- table is looped in reversed order
     function checkPlayerBulletsOutOfBounds( )
-        if (#playerBullets > 0) then
+        if ( #playerBullets > 0 ) then
             -- reverse loop through table
             for i = #playerBullets, 1, -1 do
                 if (playerBullets[i].y - 18) then
@@ -367,14 +367,14 @@
 
     function generateIsland( )
         local tempIsland = display.newImage( "island.png", (math.random(0, display.contentWidth - islandWidth)), (-islandHeight) )
-        -- insert for later reference in table playerBullets
+        -- insert for later reference in table islands
         table.insert( islands, tempIsland )
     end
 
 -- move islands
 
     function moveIslands ( )
-        if (#islands > 0) then
+        if ( #islands > 0 ) then
             for i = 1, #islands do
                 islands[ i ].y = islands[ i ].y + 3
             end
@@ -384,7 +384,7 @@
 -- remove islands out of screen
 
     function checkIslandsOutOfBounds ( )
-        if (#islands > 0) then
+        if ( #islands > 0 ) then
             -- reverse loop through table
             for i = #islands, 1, -1 do
                 if (islands[i].y > display.contentHeight) then
@@ -394,6 +394,20 @@
                 end
             end
         end
+    end
+
+-- generate of lifes
+
+    function generateFreeLife ( )
+        -- if number of lifes is bigger than 6 then do nothing
+        if ( numberOfLives >= 6 ) then
+            return
+        end
+
+        local freeLife = display.newImage( "newlife.png", math.random( 0, display.contentWidth - 40 ), 0 )
+        -- insert for later reference in table freeLifes
+        table.insert( freeLifes, freeLife )
+        planeGroup:insert( freeLife )
     end
 
 -- Element return - required for module
