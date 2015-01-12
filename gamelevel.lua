@@ -319,6 +319,7 @@
             movePLayer( )
             movePlayerBullets( )
             moveFreeLifes( )
+            checkFreeLifesOutOfBounds( )
         end
 
 -- start timers
@@ -436,6 +437,28 @@
             end
         end
     end
+
+-- general simplified logic for collision of two objects
+
+    function hasCollided( object1, object2 )
+        -- boundary conditions
+        if (object1 == nil) then
+            return false
+        end
+        if (object2 == nil) then
+            return false
+        end
+
+        local left      = object1.contentBounds.xMin <= object2.contentBounds.xMin and object1.contentBounds.xMax >= object2.contentBounds.xMin
+        local right     = object1.contentBounds.xMin >= object2.contentBounds.xMin and object1.contentBounds.xMin <= object2.contentBounds.xMax
+        local up        = object1.contentBounds.yMin <= object2.contentBounds.yMin and object1.contentBounds.yMax >= object2.contentBounds.yMin
+        local down      = object1.contentBounds.yMin >= object2.contentBounds.yMin and object1.contentBounds.yMin <= object2.contentBounds.yMax
+
+        return (left or right) and (up or down)
+
+    end
+
+
 
 -- Element return - required for module
 
