@@ -352,6 +352,7 @@
     -- table is looped in reversed order
     function checkPlayerBulletsOutOfBounds( )
         if (#playerBullets > 0) then
+            -- reverse loop through table
             for i = #playerBullets, 1, -1 do
                 if (playerBullets[i].y - 18) then
                     playerBullets[i]:removeSelf( )
@@ -376,6 +377,21 @@
         if (#islands > 0) then
             for i = 1, #islands do
                 islands[ i ].y = islands[ i ].y + 3
+            end
+        end
+    end
+
+-- remove islands out of screen
+
+    function checkIslandsOutOfBounds ( )
+        if (#islands > 0) then
+            -- reverse loop through table
+            for i = #islands, 1, -1 do
+                if (islands[i].y > display.contentHeight) then
+                    islands[i]:removeSelf( )
+                    islands[i] = nil
+                    table.remove(islands, i)
+                end
             end
         end
     end
