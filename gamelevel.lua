@@ -646,7 +646,7 @@
 
 -- remove bullets out of screen
 
-    function checkBulletsOutOfBounds( )
+    function checkEnemyBulletsOutOfBounds( )
         if ( #enemyBullets > 0 ) then
             for i = 1, #enemyBullets do
                 if (enemyBullets[ i ].y > display.contentHeight) then
