@@ -697,14 +697,34 @@
         if (#enemyBullets > 0) then
             -- loop through table of bullets and check if it had collided with player
             for i = #enemyBullets, 1, -1 do
-                -- when collided, remove bullet
+                -- when collided, remove bullet from scene and table
                 if ( hasCollided( enemyBullets[ i ], player ) ) then
                     enemyBullets[ i ]:removeSelf( )
                     enemyBullets[ i ] = nil
                     table.remove( enemyBullets, i )
-                        -- when player is not invincible - kill him
+                        -- when player is not invincible - kill him (remove 1 life)
                         if (playerIsInvincible == false) then
                             killPlayer()
+                        end
+                end
+            end
+        end
+    end
+
+-- collision of enemy plane with player
+
+    function checkEnemyPlaneCollideWithPlayer( ... )
+        if ( #enemyPlanes > 0 ) then
+            -- loop through table of planes if it has collided with player
+            for i = #enemyPlanes, 1, -1 do
+                -- when collided, remove plane from scene and table
+                if ( hasCollided(enemyPlanes[ i ], player) ) then
+                    enemyPlanes[ i ]:removeSelf( )
+                    enemyPlanes[ i ] = nil
+                    table.remove( enemyPlanes, i )
+                        -- when player is not invincible - kill him (remove 1 life)
+                        if (playerIsInvincible == false) then
+                            killPlayer( )
                         end
                 end
             end
