@@ -66,3 +66,14 @@
     function startNewGame ( )
         composer.gotoScene( "gamelevel" )
     end
+
+-- Exit 'game scene'
+
+    function scene:destroy( event )
+
+        local sceneGroup = self.view
+
+        -- removing all elements fromt this scene
+        newGameButton:removeEventListener("tap", startNewGame)
+
+    end
