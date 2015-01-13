@@ -334,6 +334,7 @@
         firePlayerBulletTimer   = timer.performWithDelay( 2000, firePlayerBullet, -1 )
         generateIslandTimer     = timer.performWithDelay( 5000, generateIsland, -1 )
         generateFreeLife        = timer.performWithDelay( 7000, generateFreeLife, -1 )
+        fireEnemyBulletsTimer   = timer.performWithDelay( 2000, fireEnemyBullets, -1 )
     end
 
 -- create bullet fired by player
@@ -605,22 +606,27 @@
 -- create bullet fired by enemy
 
     function fireEnemyBullets( )
+        -- checks if there are at least two planes
         if ( #enemyBullets >= 2 ) then
             -- returns integer smaller or equal than half of #enemyPlanes
             local numberOfEnemyPlanesToFire = math.floor( #enemyPlanes / 2 )
-            -- copy table from enemyPlanes
+            -- copy table from enemyPlanes to make independent manipulations
             local tempEnemyPlanes = table.copy( enemyPlanes )
 
             -- function for firing bullets
             local function fireBullet( )
+                -- chooses enemy from table of enemy planes
                 local randIndex = math.random( #tempEnemyPlanes )
+                -- bullet fired
                 local tempBullet = display.newImage( "bullet.png", (tempEnemyPlanes[randIndex].x + playerWidth / 2) + bulletWidth, tempEnemyPlanes[randIndex].y + playerHeight + bulletHeight )
                 tempBullet.rotation = 180
+                -- reference input
                 planeGroup:insert( tempBullet )
                 table.insert( enemyBullets, tempBullet )
                 table.remove( tempEnemyPlanes, randIndex )
             end
 
+            -- choose enemy to fire from range of 0 and half of the enemies in enemy table
             for i = 0 , numberOfEnemyPlanesToFire do
                 fireBullet()
             end
