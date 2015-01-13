@@ -323,6 +323,7 @@
             checkPlayerCollidesWithFreeLife( )
             generateEnemies( )
             moveEnemyPlane( )
+            moveEnemyBullets( )
         end
 
 -- start timers
@@ -633,7 +634,15 @@
         end
     end
 
---
+-- movement of enemy bullets
+
+    function moveEnemyBullets( )
+        if ( #enemyBullets > 0 ) then
+            for i = 1, #enemyBullets do
+                enemyBullets[ i ].y = enemyBullets[ i ] + 7
+            end
+        end
+    end
 
 
 -- Element return - required for module
