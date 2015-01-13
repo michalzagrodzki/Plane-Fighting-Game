@@ -53,3 +53,10 @@
         -- event listener for new game
         newGameButton:addEventListener( "tap", startNewGame )
     end
+
+-- changes game over text into new game button
+
+    function showButton( )
+        gameOverText.isVisible = false
+        newGameButton.isVisible = true
+    end
