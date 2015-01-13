@@ -104,7 +104,7 @@
 
 -- Enter 'game scene'
 
-    function scene:enter ( event )
+    function scene:show ( event )
         local sceneGroup = self.view
 
         -- removes previous instance of scene
@@ -134,7 +134,7 @@
     end
 
 -- Function adds event listeners when player enters scene
-    scene:addEventListener( "enter", scene )
+    scene:addEventListener( "show", scene )
 
 -- Setting background
 
