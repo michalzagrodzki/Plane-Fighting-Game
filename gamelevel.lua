@@ -731,6 +731,13 @@
         end
     end
 
+-- Go to 'gameover scene'
+
+    function gameOver( )
+        composer.gotoScene( "gameover" )
+    end
+
+
 -- Element return - required for module
 
 	return scene
