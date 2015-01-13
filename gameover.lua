@@ -77,3 +77,9 @@
         newGameButton:removeEventListener("tap", startNewGame)
 
     end
+
+-- Event listeners setup
+
+    scene:addEventListener( "create", scene )
+    scene:addEventListener( "show", scene )
+    scene:addEventListener( "destroy", scene )
