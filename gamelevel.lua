@@ -336,6 +336,7 @@
             moveEnemyPlane( )
             moveEnemyBullets( )
             checkEnemyBulletsOutOfBounds( )
+            checkEnemyPlanesOutOfBounds( )
 
         end
 
@@ -671,6 +672,19 @@
         end
     end
 
+-- remove enemy planes out of screen
+
+    function checkEnemyPlanesOutOfBounds( )
+        if (#enemyPlanes > 0) then
+            for i = 1 , #enemyPlanes do
+                if (enemyPlanes[ i ].y > display.contentHeight) then
+                    enemyPlanes[ i ]:removeSelf( )
+                    enemyPlanes[ i ] = nil
+                    table.remove( enemyPlanes, i )
+                end
+            end
+        end
+    end
 
 -- Element return - required for module
 
