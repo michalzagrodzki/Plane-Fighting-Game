@@ -322,6 +322,7 @@
             checkFreeLifesOutOfBounds( )
             checkPlayerCollidesWithFreeLife( )
             generateEnemies( )
+            moveEnemyPlane( )
         end
 
 -- start timers
@@ -376,7 +377,7 @@
         table.insert( islands, tempIsland )
     end
 
--- move islands
+-- movement of islands
 
     function moveIslands ( )
         if ( #islands > 0 ) then
@@ -551,6 +552,55 @@
             end
         end
     end
+
+-- movement of enemy planes
+
+    -- setting different types of movement (regular, waver, chaser)
+    function moveEnemyPlane( )
+        if (#enemyPlanes > 0) then
+            for i = 1 , #enemyPlanes do
+                -- movement of 'regular' plane
+                if (enemyPlanes[ i ].type == "regular") then
+                    moveRegularPlane(enemyPlanes[i])
+                -- movement of 'waver' plane
+                elseif( enemyPlanes[ i ].type == "waver" ) then
+                    moveWaverPlane(enemyPlanes[i])
+                -- movement of 'chaser' plane
+                else
+                    moveChaserPlane(enemyPlane[i])
+                end
+            end
+        end
+    end
+
+-- movement of regular plane
+
+    function moveRegularPlane( )
+        plane.y = plane.y + 4
+    end
+
+-- movement of waver plane
+
+    function moveWaverPlane( )
+        plane.y = plane.y + 4
+        plane.x = (display.contentWidth / 2) + 250 * math.cos( numberOfTicks * 0.5 * math.pi / 30 )
+    end
+
+-- movement of chaser plane (towards plane)
+
+    function moveChaserPlane( plane )
+        if ( plane.x < player.x ) then
+            plane.x = plane.x + 4
+        end
+
+        if ( plane.x > player.x ) then
+            plane.x = plane.x -4
+        end
+
+        plane.y = plane.y + 4
+    end
+
+
 -- Element return - required for module
 
 	return scene
