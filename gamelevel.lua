@@ -20,8 +20,8 @@
     local islandWidth = 100
 
     -- properties of enemies
-    local numberofEnemysToGenerate = 0
-    local numberOfEnemysGenerated = 0
+    local numberofEnemiesToGenerate = 0
+    local numberOfEnemiesGenerated = 0
 
     -- stores bullets fired by player
     local playerBullets = {}
@@ -321,6 +321,7 @@
             moveFreeLifes( )
             checkFreeLifesOutOfBounds( )
             checkPlayerCollidesWithFreeLife( )
+            generateEnemies( )
         end
 
 -- start timers
@@ -495,6 +496,61 @@
         end
     end
 
+-- generation of enemies - number of enemies to be called (between 3 and 7 every 2 seconds)
+
+    function generateEnemies( )
+        numberofEnemiesToGenerate = math.random( 3, 7 )
+        timer.performWithDelay( 2000, generateEnemyPlane, numberofEnemiesToGenerate )
+    end
+
+-- generate single enemy plane
+
+    -- Three types of enemy planes
+        -- regular - moves down the screen in straight line
+        -- waver - moves on wave pattern on x axis
+        -- chaser - chases the players plane
+
+    function generateEnemyPlane( )
+        -- check if game is not over
+        -- generate randomGridSpace - to position enemy plane
+        -- generate randomEnemyNumber - to select type of enemy
+        if ( gameOver ~= true ) then
+            local randomGridSpace = math.random( 11 )
+            local randomEnemyNumber = math.random( 3 )
+            local tempEnemy
+
+            -- if slot of planeGrid is taken, we return function (end it)
+            if ( planeGrid[randomGridSpace] ~= 0 ) then
+                generateEnemyPlane( )
+            return
+
+            -- generate specific type of enemy (regular, waver, chaser) based on randomEnemyNumber
+            else
+                    if ( randomEnemyNumber == 1 ) then
+                        tempEnemy = display.newImage( "enemy1.png", (randomGridSpace*65) - 28, -60 )
+                        tempEnemy.type = "regular"
+                    elseif ( randomEnemyNumber == 2 ) then
+                        tempEnemy = display.newImage( "enemy2.png", display.contentWidth / 2 - playerWidth / 2, -60 )
+                        tempEnemy.type = "waver"
+                    else
+                        tempEnemy = display.newImage( "ënemy3.png",  )
+                        tempEnemy.type = "chaser"
+                    end
+                -- set up slot to 1, insert enemyPlane for later reference
+                planeGrid[randomGridSpace] = 1
+                table.insert( enemyPlanes, tempEnemy )
+                planeGroup:insert( tempEnemy )
+                numberOfEnemiesGenerated = numberOfEnemiesGenerated + 1
+            end
+
+            -- checks if number of enemies on screen is between 3 and 7, if it is true we reset counter, reset grid and delay function for 2 seconds
+            if (numberOfEnemiesGenerated == numberofEnemiesToGenerate) then
+                numberofEnemiesToGenerate = 0
+                resetPlaneGrid()
+                timer.performWithDelay( 2000, generateEnemies, 1 )
+            end
+        end
+    end
 -- Element return - required for module
 
 	return scene
