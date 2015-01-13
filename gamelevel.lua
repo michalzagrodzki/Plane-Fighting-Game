@@ -328,6 +328,8 @@
 -- start timers
 
     -- firing bullets (firePlayerBullet) all the time
+    -- creating islands all the time
+    -- creating extra lifes all the time
     function startTimers( )
         firePlayerBulletTimer   = timer.performWithDelay( 2000, firePlayerBullet, -1 )
         generateIslandTimer     = timer.performWithDelay( 5000, generateIsland, -1 )
@@ -599,6 +601,33 @@
 
         plane.y = plane.y + 4
     end
+
+-- create bullet fired by enemy
+
+    function fireEnemyBullets( )
+        if ( #enemyBullets >= 2 ) then
+            -- returns integer smaller or equal than half of #enemyPlanes
+            local numberOfEnemyPlanesToFire = math.floor( #enemyPlanes / 2 )
+            -- copy table from enemyPlanes
+            local tempEnemyPlanes = table.copy( enemyPlanes )
+
+            -- function for firing bullets
+            local function fireBullet( )
+                local randIndex = math.random( #tempEnemyPlanes )
+                local tempBullet = display.newImage( "bullet.png", (tempEnemyPlanes[randIndex].x + playerWidth / 2) + bulletWidth, tempEnemyPlanes[randIndex].y + playerHeight + bulletHeight )
+                tempBullet.rotation = 180
+                planeGroup:insert( tempBullet )
+                table.insert( enemyBullets, tempBullet )
+                table.remove( tempEnemyPlanes, randIndex )
+            end
+
+            for i = 0 , numberOfEnemyPlanesToFire do
+                fireBullet()
+            end
+        end
+    end
+
+--
 
 
 -- Element return - required for module
