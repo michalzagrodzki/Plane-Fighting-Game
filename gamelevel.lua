@@ -644,6 +644,20 @@
         end
     end
 
+-- remove bullets out of screen
+
+    function checkBulletsOutOfBounds( )
+        if ( #enemyBullets > 0 ) then
+            for i = 1, #enemyBullets do
+                if (enemyBullets[ i ].y > display.contentHeight) then
+                    enemyBullets[ i ]:removeSelf( )
+                    enemyBullets[ i ] = nil
+                    table.remove( enemyBullets, i )
+                end
+            end
+        end
+    end
+
 
 -- Element return - required for module
 
