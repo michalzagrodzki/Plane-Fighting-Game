@@ -806,6 +806,14 @@
 
     scene:addEventListener("hide", scene )
 
+-- stopping timers (related to 'hide scene')
+
+    function cancelTimers( )
+        timer.cancel( firePlayerBullet )
+        timer.cancel( generateIslandTimer )
+        timer.cancel( fireEnemyBulletsTimer )
+        timer.cancel( generateFreeLifeTimer )
+    end
 
 -- Element return - required for module
 
