@@ -322,21 +322,26 @@
         function gameLoop ( )
             numberOfTicks = numberOfTicks + 1
 
+            -- function regarding player
             movePLayer( )
             movePlayerBullets( )
             checkPlayerBulletsOutOfBounds( )
 
+            -- functions regarding islands
             moveIslands( )
             checkIslandsOutOfBounds( )
 
+            -- functions regarding extra lifes
             moveFreeLifes( )
             checkFreeLifesOutOfBounds( )
             checkPlayerCollidesWithFreeLife( )
 
+            -- functions regarding enemy planes
             moveEnemyPlane( )
             moveEnemyBullets( )
             checkEnemyBulletsOutOfBounds( )
             checkEnemyPlanesOutOfBounds( )
+            checkEnemyPlanesCollideWithPlayer( )
 
         end
 
@@ -681,6 +686,26 @@
                     enemyPlanes[ i ]:removeSelf( )
                     enemyPlanes[ i ] = nil
                     table.remove( enemyPlanes, i )
+                end
+            end
+        end
+    end
+
+-- collision of enemy bullets with player
+
+    function checkEnemyBulletsCollideWithPlayer( )
+        if (#enemyBullets > 0) then
+            -- loop through table of bullets and check if it had collided with player
+            for i = #enemyBullets, 1, -1 do
+                -- when collided, remove bullet
+                if ( hasCollided( enemyBullets[ i ], player ) ) then
+                    enemyBullets[ i ]:removeSelf( )
+                    enemyBullets[ i ] = nil
+                    table.remove( enemyBullets, i )
+                        -- when player is not invincible - kill him
+                        if (playerIsInvincible == false) then
+                            killPlayer()
+                        end
                 end
             end
         end
