@@ -711,6 +711,26 @@
         end
     end
 
+-- kills player - checks if game is over when number of lives is less then 0, if not respawns player
+
+    function killPlayer( )
+        -- reduces number of lifes by 1 when killed
+        numberOfLives = numberOfLives - 1
+
+        -- goes to gameover screen when player have 0 lives
+        if ( numberOfLives == 0 ) then
+            gameOver = true
+            doGameOver( )
+
+        -- if player is killed and still have lifes - respawns new player and make him invincible for period
+        else
+            spawnNewPlayer( )
+            hideLives( )
+            showLives( )
+            playerIsInvincible = true
+        end
+    end
+
 -- Element return - required for module
 
 	return scene
