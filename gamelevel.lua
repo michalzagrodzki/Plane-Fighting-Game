@@ -121,11 +121,16 @@
         local planeSound = audio.loadStream( "planesound.mp3" )
         planeSoundChannel = audio.play( planeSound, {loops = -1} )
 
+        -- function that keeps triggering gameLoop
+        Runtime:addEventListener( "enterFrame", gameLoop )
+
         -- start timers
         startTimers( )
 
-        -- function that keeps triggering gameLoop
-        Runtime:addEventListener( "enterFrame", gameLoop )
+        -- generate enemies
+        generateEnemies( )
+
+
     end
 
 -- Function adds event listeners when player enters scene
@@ -316,14 +321,22 @@
 -- function, that updates position of every sprite element on each frame
         function gameLoop ( )
             numberOfTicks = numberOfTicks + 1
+
             movePLayer( )
             movePlayerBullets( )
+            checkPlayerBulletsOutOfBounds( )
+
+            moveIslands( )
+            checkIslandsOutOfBounds( )
+
             moveFreeLifes( )
             checkFreeLifesOutOfBounds( )
             checkPlayerCollidesWithFreeLife( )
-            generateEnemies( )
+
             moveEnemyPlane( )
             moveEnemyBullets( )
+            checkEnemyBulletsOutOfBounds( )
+
         end
 
 -- start timers
