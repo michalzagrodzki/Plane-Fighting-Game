@@ -731,12 +731,33 @@
         end
     end
 
--- Go to 'gameover scene'
+-- go to 'gameover scene'
 
     function gameOver( )
         composer.gotoScene( "gameover" )
     end
 
+-- spawn new player
+
+    function spawnNewPlayer( )
+        -- fading player five times
+        local numberOfTimesToFadePlayer = 5
+        local numberOfTimesPlayerHasFaded = 0
+
+            -- function that will fade player
+            local function fadePlayer( )
+                player.alpha = 0
+                transition.to( player, {time = 200, alpha = 1} )
+                numberOfTimesPlayerHasFaded = numberOfTimesPlayerHasFaded + 1
+                -- ending invincibleness of player
+                if (numberOfTimesPlayerHasFaded == numberOfTimesToFadePlayer) then
+                    playerIsInvincible = false
+                end
+            end
+        -- timer for fading in and out of player
+        timer.performWithDelay( 400, fadePlayer, numberOfTimesToFadePlayer )
+
+    end
 
 -- Element return - required for module
 
