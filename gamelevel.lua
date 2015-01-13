@@ -779,6 +779,34 @@
 
     end
 
+-- Exit 'game scene'
+
+    function scene:hide( event )
+
+        local sceneGroup = self.view
+
+            -- removing controls
+            rectDown:removeEventListener( "touch", movePlane )
+            rectUp:removeEventListener( "touch", movePlane )
+            rectLeft:removeEventListener( "touch", movePlane )
+            rectRight:removeEventListener( "touch", movePlane )
+
+            -- removing audio
+            audio.stop( planeSoundChannel )
+            audio.dispose( planeSoundChannel )
+
+            -- remove runtime
+            Runtime:removeEventListener("enterFrame", gameLoop)
+
+            -- stop timers
+            cancelTimers()
+    end
+
+-- event listener for hiding scene
+
+    scene:addEventListener("hide", scene )
+
+
 -- Element return - required for module
 
 	return scene
