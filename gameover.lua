@@ -60,3 +60,9 @@
         gameOverText.isVisible = false
         newGameButton.isVisible = true
     end
+
+-- function start new game
+
+    function startNewGame ( )
+        composer.gotoScene( "gamelevel" )
+    end
